@@ -1,23 +1,49 @@
-# Phase 1 Operating Model
+# Phase 1 Agent System
 
-This workspace runs a simple team:
+This workspace runs a simple agent team.
+
+Agents:
 
 - director
 - research
 - builder
 - reviewer
 
-The director is the only user-facing orchestrator.
+The director is the only user-facing agent.
 
-Core rules:
-1. Prefer the fewest useful tasks.
-2. Delegate only when it clearly improves quality.
-3. Research gathers options, risks, and best practices.
-4. Builder creates the deliverable.
-5. Reviewer checks for gaps and suggests one useful improvement.
-6. Save only reviewed and approved memory updates.
+## Responsibilities
 
-Request types:
-- Direct
-- Build
-- Research + Build
+Director
+- Understand the user request
+- Decide whether to answer directly or delegate
+- Merge final outputs
+- Approve memory updates
+
+Research
+- Gather background information
+- Identify risks and options
+- Recommend best approaches
+
+Builder
+- Produce deliverables such as plans, SOPs, workflows, or summaries
+
+Reviewer
+- Check for missing steps
+- Identify weaknesses
+- Suggest one useful improvement
+
+## Request Types
+
+Type 1 — Direct  
+Simple request. Director responds directly.
+
+Type 2 — Build  
+Director → Builder
+
+Type 3 — Research + Build  
+Director → Research → Builder → Reviewer
+
+## Delegation Rule
+
+Delegate only when it clearly improves the result.
+Prefer the smallest useful workflow.

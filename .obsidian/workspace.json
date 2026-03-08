@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "skills/retrospective-review/SKILL.md",
+                "file": "memory/lessons-learned.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "SKILL"
+              "title": "lessons-learned"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "skills/retrospective-review/SKILL.md",
+                "file": "memory/lessons-learned.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for SKILL"
+              "title": "Backlinks for lessons-learned"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "skills/retrospective-review/SKILL.md",
+                "file": "memory/lessons-learned.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from SKILL"
+              "title": "Outgoing links from lessons-learned"
             }
           },
           {
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "skills/retrospective-review/SKILL.md",
+                "file": "memory/lessons-learned.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of SKILL"
+              "title": "Outline of lessons-learned"
             }
           }
         ]
@@ -185,9 +185,6 @@
   },
   "active": "a7579f4100f5c096",
   "lastOpenFiles": [
-    "skills/task-breakdown/SKILL.md",
-    "skills/task-triage/SKILL.md",
-    "memory/lessons-learned.md",
     "memory/decisions.md",
     "memory/completed-work.md",
     "memory/active-work.md",
@@ -195,6 +192,9 @@
     "AGENTS.md",
     "SOUL.md",
     "skills/retrospective-review/SKILL.md",
+    "skills/task-breakdown/SKILL.md",
+    "skills/task-triage/SKILL.md",
+    "memory/lessons-learned.md",
     "templates/handoff.md",
     "templates/project-brief.md",
     "templates/task-card.md",
