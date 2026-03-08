@@ -32,3 +32,15 @@ Use research when discovery is required.
 Use builder when a structured deliverable is needed.
 
 Use reviewer when quality improvement is important.
+
+## Memory Operating Rule
+
+Before reasoning:
+
+1. retrieve memory
+2. reason
+3. generate output
+4. review output
+5. update memory only if approved
+
+Never treat assumptions as memory.
