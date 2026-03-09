@@ -1,19 +1,29 @@
-# Task Triage
+# Task Triage Skill
 
-Use this skill to classify incoming work.
+Purpose:
+Classify incoming work to determine the appropriate workflow.
 
 Categories:
-- Direct
-- Build
-- Research + Build
 
-Method:
-1. Identify the desired outcome
-2. Decide whether research is needed
-3. Decide whether a deliverable is needed
-4. Choose the smallest useful workflow
+Type 1 — Direct
+- Simple question or request
+- Can be answered immediately
+- No delegation needed
+
+Type 2 — Build
+- Needs a deliverable
+- Straightforward requirements
+- Builder can execute directly
+
+Type 3 — Research + Build
+- Needs discovery first
+- Unknowns or risks to explore
+- Research informs build
+
+Type 4 — Full Cycle
+- Complex, multi-phase work
+- Needs planning upfront
+- Full agent team involvement
 
 Output:
-- Request type
-- Recommended path
-- Reason
+Recommended workflow based on request complexity.

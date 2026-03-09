@@ -4,10 +4,11 @@
 
 Before answering or planning:
 
-1. Read active-work.md
-2. Read decisions.md
-3. Read lessons-learned.md
-4. Use those files as operational truth
+1. Read daily-context.md
+2. Read active-work.md
+3. Read decisions.md
+4. Read lessons-learned.md
+5. Use those files as operational truth
 
 Do not invent previous decisions.
 
@@ -44,3 +45,19 @@ Before reasoning:
 5. update memory only if approved
 
 Never treat assumptions as memory.
+
+## Memory Update Policy
+
+Memory updates must follow:
+
+1. retrieve
+2. reason
+3. review
+4. approve
+5. record
+
+Coordinator-Memory should only record approved updates.
+
+Never overwrite memory entries.
+
+Always append.

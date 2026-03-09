@@ -1,29 +1,19 @@
 # Project Brief
 
-## Objective
+Objective:
+What are we trying to accomplish?
 
-What are we trying to achieve?
+Desired Outcome:
+What does success look like?
 
-## Desired Outcome
+Constraints:
+What limits or requirements must be met?
 
-What does done look like?
-
-## Constraints
-
-- Timeline?
-- Resources?
-- Limitations?
-
-## Risks
-
+Risks:
 What could go wrong?
 
-## Recommended Approach
+Recommended Approach:
+How should we proceed?
 
-How should we tackle this?
-
-## Next Steps
-
-1.
-2.
-3.
+Next Steps:
+What actions come next?
