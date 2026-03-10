@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dice Roller</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #1a1a2e;
+      color: #e0e0e0;
+      font-family: 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 560px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      color: #e94560;
+      margin-bottom: 0.25rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #666;
+      margin-bottom: 2rem;
+      letter-spacing: 1px;
+    }
+
+    /* Dice type selector */
+    .dice-types {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .dice-btn {
+      background: #16213e;
+      border: 2px solid #0f3460;
+      color: #a0a0c0;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.15s;
+      min-width: 60px;
+    }
+
+    .dice-btn:hover {
+      border-color: #e94560;
+      color: #e94560;
+    }
+
+    .dice-btn.active {
+      background: #e94560;
+      border-color: #e94560;
+      color: #fff;
+    }
+
+    /* Controls row */
+    .controls {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .qty-label {
+      font-size: 0.9rem;
+      color: #888;
+      white-space: nowrap;
+    }
+
+    .qty-input {
+      width: 60px;
+      background: #16213e;
+      border: 2px solid #0f3460;
+      color: #e0e0e0;
+      padding: 0.4rem 0.5rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .qty-input:focus {
+      outline: none;
+      border-color: #e94560;
+    }
+
+    .roll-btn {
+      background: #e94560;
+      border: none;
+      color: #fff;
+      padding: 0.6rem 2rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: background 0.15s, transform 0.1s;
+    }
+
+    .roll-btn:hover { background: #c73652; }
+    .roll-btn:active { transform: scale(0.96); }
+
+    .roll-btn.rolling {
+      animation: shake 0.3s ease;
+    }
+
+    @keyframes shake {
+      0%   { transform: rotate(0deg); }
+      20%  { transform: rotate(-8deg) scale(1.05); }
+      40%  { transform: rotate(8deg) scale(1.05); }
+      60%  { transform: rotate(-5deg); }
+      80%  { transform: rotate(5deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    /* Results area */
+    .results {
+      background: #16213e;
+      border: 2px solid #0f3460;
+      border-radius: 12px;
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+      min-height: 90px;
+      text-align: center;
+    }
+
+    .results-placeholder {
+      color: #444;
+      font-style: italic;
+      margin-top: 0.75rem;
+    }
+
+    .dice-results {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .die-face {
+      background: #0f3460;
+      border: 2px solid #1a4a8a;
+      border-radius: 8px;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #e0e0e0;
+      animation: popIn 0.2s ease;
+    }
+
+    .die-face.max {
+      border-color: #ffd700;
+      color: #ffd700;
+    }
+
+    .die-face.min {
+      border-color: #e94560;
+      color: #e94560;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to   { transform: scale(1);   opacity: 1; }
+    }
+
+    .total-line {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #e94560;
+    }
+
+    .total-line span {
+      color: #888;
+      font-size: 0.95rem;
+      font-weight: 400;
+    }
+
+    /* History */
+    .history-header {
+      font-size: 0.85rem;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .history-list {
+      list-style: none;
+    }
+
+    .history-list li {
+      background: #16213e;
+      border-left: 3px solid #0f3460;
+      padding: 0.4rem 0.75rem;
+      margin-bottom: 0.35rem;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.85rem;
+      color: #888;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .history-list li .h-label { color: #a0a0c0; font-weight: 600; }
+    .history-list li .h-total { color: #e94560; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Dice Roller</h1>
+    <p class="subtitle">Choose your dice &amp; roll</p>
+
+    <div class="dice-types">
+      <button class="dice-btn" data-sides="4">d4</button>
+      <button class="dice-btn active" data-sides="6">d6</button>
+      <button class="dice-btn" data-sides="8">d8</button>
+      <button class="dice-btn" data-sides="10">d10</button>
+      <button class="dice-btn" data-sides="12">d12</button>
+      <button class="dice-btn" data-sides="20">d20</button>
+      <button class="dice-btn" data-sides="100">d100</button>
+    </div>
+
+    <div class="controls">
+      <span class="qty-label">Number of dice:</span>
+      <input class="qty-input" type="number" id="qty" min="1" max="10" value="1">
+      <button class="roll-btn" id="rollBtn">Roll</button>
+    </div>
+
+    <div class="results" id="results">
+      <p class="results-placeholder">Select a die and roll!</p>
+    </div>
+
+    <p class="history-header">Roll History</p>
+    <ul class="history-list" id="historyList"></ul>
+  </div>
+
+  <script>
+    const history = [];
+
+    function rollDie(sides) {
+      return Math.floor(Math.random() * sides) + 1;
+    }
+
+    function rollDice(sides, count) {
+      return Array.from({ length: count }, () => rollDie(sides));
+    }
+
+    function displayResults(sides, results) {
+      const container = document.getElementById('results');
+      const total = results.reduce((a, b) => a + b, 0);
+      const max = sides;
+      const min = 1;
+
+      const facesHTML = results.map(v => {
+        const cls = v === max ? 'die-face max' : v === min ? 'die-face min' : 'die-face';
+        return `<div class="${cls}">${v}</div>`;
+      }).join('');
+
+      const countLabel = results.length > 1
+        ? `${results.length}d${sides}`
+        : `d${sides}`;
+
+      container.innerHTML = `
+        <div class="dice-results">${facesHTML}</div>
+        <div class="total-line">${total} <span>total (${countLabel})</span></div>
+      `;
+    }
+
+    function addToHistory(sides, count, results) {
+      const total = results.reduce((a, b) => a + b, 0);
+      const label = count > 1 ? `${count}d${sides}` : `d${sides}`;
+      const detail = results.length > 1 ? ` [${results.join(', ')}]` : '';
+      history.unshift({ label, total, detail });
+      if (history.length > 10) history.pop();
+
+      const list = document.getElementById('historyList');
+      list.innerHTML = history.map(h => `
+        <li>
+          <span class="h-label">${h.label}</span>
+          <span>${h.detail}</span>
+          <span class="h-total">= ${h.total}</span>
+        </li>
+      `).join('');
+    }
+
+    // Dice type selection
+    document.querySelectorAll('.dice-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.dice-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    // Roll button
+    document.getElementById('rollBtn').addEventListener('click', () => {
+      const activeBtn = document.querySelector('.dice-btn.active');
+      if (!activeBtn) return;
+
+      const sides = parseInt(activeBtn.dataset.sides, 10);
+      const qty = Math.min(10, Math.max(1, parseInt(document.getElementById('qty').value, 10) || 1));
+      document.getElementById('qty').value = qty;
+
+      const rollBtn = document.getElementById('rollBtn');
+      rollBtn.classList.remove('rolling');
+      void rollBtn.offsetWidth; // reflow to restart animation
+      rollBtn.classList.add('rolling');
+      rollBtn.addEventListener('animationend', () => rollBtn.classList.remove('rolling'), { once: true });
+
+      const results = rollDice(sides, qty);
+      displayResults(sides, results);
+      addToHistory(sides, qty, results);
+    });
+
+    // Allow Enter key to roll
+    document.getElementById('qty').addEventListener('keydown', e => {
+      if (e.key === 'Enter') document.getElementById('rollBtn').click();
+    });
+  </script>
+</body>
+</html>
