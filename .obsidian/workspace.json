@@ -180,11 +180,13 @@
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "bases:Create new base": false,
+      "github-sync:Sync with Remote": false
     }
   },
-  "active": "a7579f4100f5c096",
+  "active": "e20e60947d3ecd0e",
   "lastOpenFiles": [
+    "README.md",
     "AGENTS.md",
     "memory/lessons-learned.md",
     "memory/decisions.md",
@@ -215,7 +217,6 @@
     "memory/decisions.md.md",
     "memory/completed-work.md.md",
     "memory/active-work.md.md",
-    "TOOLS.md.md",
     "memory"
   ]
 }
